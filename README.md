@@ -1,6 +1,6 @@
 ## LOOKUP THE TAX DUE FOR THE A PARTICULAR VEHICLE
 
-'GET /<veh_type>/<veh>/<cc>/<valid_upto>'
+'GET /veh_type/veh/cc/valid_upto'
 
 **Valid values for above arguments**
 - 'veh_type' : ['private', 'public']
