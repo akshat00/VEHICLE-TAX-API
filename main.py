@@ -5,14 +5,14 @@ from bikram import samwat
 
 app = Flask(__name__)
 
-@app.route('/<string:vehicle_registration_type>/<string:vehicle>/<int:cc>/<string:valid_upto>', methods = ['GET'])
+@app.route('/<string:vehicle_registration_type>/<string:vehicle>/<int:cubic_centimeter_capacity>/<string:valid_upto>', methods = ['GET'])
 
-def get(vehicle_registration_type, vehicle, cc, valid_upto):
-	x = calculate(vehicle_registration_type, vehicle, cc, valid_upto)
+def get(vehicle_registration_type, vehicle, cubic_centimeter_capacity, valid_upto):
+	x = calculate(vehicle_registration_type, vehicle, cubic_centimeter_capacity, valid_upto)
 
 	return jsonify({"Amount Due" : x[0], 'Valid Upto' : x[1]}), 200
 
-def calculate(vehicle_registration_type, vehicle, cc, valid_upto):
+def calculate(vehicle_registration_type, vehicle, cubic_centimeter_capacity, valid_upto):
 	
 	dates = list((valid_upto.split('-')))
 
@@ -37,14 +37,14 @@ def calculate(vehicle_registration_type, vehicle, cc, valid_upto):
 		cursor = database_link.execute('SELECT CC_BEG, CC_END, ' + year + ' FROM MOTORCYCLE')
 			
 		for row in cursor:
-			if cc >= row[0] and cc <= row[1]:
+			if cubic_centimeter_capacity >= row[0] and cubic_centimeter_capacity <= row[1]:
 				tax = row[2]
 			
 	elif vehicle in small_vehicle:
 		cursor = database_link.execute('SELECT CC_BEG, CC_END, ' + year + ' FROM SMALL_VEH')
 					
 		for row in cursor:
-			if(row[0] <= cc and row[1] >= cc):
+			if(row[0] <= cubic_centimeter_capacity and row[1] >= cubic_centimeter_capacity):
 				tax = row[2]		
 			
 	elif vehicle in power_vehicle:
