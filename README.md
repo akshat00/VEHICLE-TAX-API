@@ -1,6 +1,6 @@
 ## LOOKUP THE TAX DUE FOR THE A PARTICULAR VEHICLE
 
-'GET /vehicle_registration_type/vehicle/cc/valid_upto'
+'GET /vehicle_registration_type/vehicle/cubic_centimeter_capacity/valid_upto'
 
 **Valid values for above arguments**
 - 'vehicle_registration_type' : ['private', 'public']
